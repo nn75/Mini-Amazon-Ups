@@ -1,0 +1,27 @@
+{% extends "website/base.html" %}
+
+{% block content %}
+
+<table class="table">
+        <caption>Your Shopping Cart</caption>
+        <thead>
+        <tr>
+            <th scope="col">Product Name</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Checkboxes</th>
+            <th scope="col">Delete? Really?</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in carts %}
+            <tr>
+                <td scope="row">{{ item.product_name }}</td>
+                <td>{{ item.amount }}</td>
+                <td><a href="{% url 'place_order' product_name=item.product_name amount=item.amount %}">Place Your Order</a></td>
+                <td><a href="{% url 'delete_item' cid=item.id %}">Delete Your Order</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+</table>
+
+{% endblock content %}

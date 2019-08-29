@@ -1,0 +1,69 @@
+//Note: port number: 34567
+// we temporarily assume each buy request contains only one product (the truck go to one warehouse for each request)
+// When Amazon send an ‘Order’ info, the UPS username is included. (for simplicity we temporarily assume the UPS username is valid) 
+
+syntax = "proto2";
+//A->U
+message Product {
+	required int32 id = 1;
+	required string description = 2;
+	required int32 amount = 3;
+}
+
+// to request a truck to wharehouse
+message Order{
+	required int32 whid = 1;
+	required int32 x = 2;
+	required int32 y = 3;
+	required int64 packageid = 4;
+	required string upsusername = 5; 
+	repeated Product item = 6; 
+	required int64 seqnum = 7;
+}
+
+// request that package/truck be delivered
+message Deliver{
+	required int64 packageid = 1;
+	required int64 seqnum = 2;
+}
+
+// warehouse address so UPS can map warehouse id to address
+message AWarehouse {
+	required int32 id = 1;
+	required int32 x = 2;
+	required int32 y = 3;
+	required int64 seqnum = 4;
+}
+
+message AUCommands{
+	repeated Order order = 1;
+	repeated Deliver todeliver = 2;
+	repeated AWarehouse whinfo = 3;
+	repeated int64 acks = 4;
+}
+
+
+
+
+
+
+//U->A
+// truck sent to warehouse id
+message Truck{
+	required int32 whid = 1;
+	required int32 truckid = 2;
+		required int64 packageid = 3; // to remove?
+required int64 seqnum = 4;
+}
+
+// package delivered to address
+message Delivered{
+	required int64 packageid = 1;
+	required int64 seqnum = 2;
+}
+
+message UACommands{
+	repeated Truck arrived = 1;
+	repeated Delivered finish = 2;
+	repeated int64 acks = 3;
+}

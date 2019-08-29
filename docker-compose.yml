@@ -1,0 +1,48 @@
+version: '2'
+
+services:
+  db:
+      image: postgres
+      volumes:
+            - data-volume:/var/lib/postgresql/data
+
+  web-init:
+      build: ./Amazon_project
+      command: /code/initserver.sh
+      volumes:
+        - ./Amazon_project:/code
+      depends_on:
+        - db
+  web:
+      build: ./Amazon_project
+      user: nobody
+      command: /code/runserver.sh
+      volumes:
+        - ./Amazon_project:/code
+      expose:
+        - "8000"
+      depends_on:
+        - web-init
+  nginx:
+     image: nginx:latest
+     ports:
+       - "8000:8000"
+     volumes:
+       - ./nginx/config:/etc/nginx/conf.d
+     depends_on:
+       - web
+       
+  server:
+    build: ./Mini_amazon
+    user: root
+    command: bash -c "make clean && make && ./Mini_amazon 1"
+    expose:
+    - "45678"
+    ports:
+      - "23456:23456"
+      - "45678:45678"
+    depends_on:
+        - db
+        
+volumes:
+   data-volume: 

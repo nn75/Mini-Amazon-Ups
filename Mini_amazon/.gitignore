@@ -1,0 +1,5 @@
+*/a.out
+*/*.o
+*/*.dbg.o
+*/test
+*/debug

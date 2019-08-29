@@ -1,0 +1,50 @@
+{% extends "website/base.html" %}
+
+{% block content %}
+    {% if form1 %}
+        <form method="post">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Select Product</legend>
+                {{ form1.as_p }}
+            </fieldset>
+            <div class="form-group">
+                <button class="button button-outline-info" type="submit" name="search_product">Search Product</button>
+            </div>
+        </form>
+    {% endif %}
+
+    {% if form %}
+        <form method="post">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Select Product and Amount</legend>
+                {{ form.as_p }}
+            </fieldset>
+            <div class="form-group">
+                <button class="button button-outline-info" type="submit" name="add_to_cart">Add to Cart</button>
+                <a class="button button-outline-info" href="{% url 'select_product' %}">Reselect</a>
+            </div>
+        </form>
+    {% endif %}
+
+
+    <table class="table">
+        <caption>Check out all the good stuff we have right now</caption>
+        <thead>
+        <tr>
+            <th scope="col">Product Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td scope="row">{{ product.product_name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock content %}
+
+

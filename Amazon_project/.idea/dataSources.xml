@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="mini_amazon@vcm-8300.vm.duke.edu" uuid="b1115083-4ee5-4559-86fc-ae47e438e70f">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://vcm-8300.vm.duke.edu:5432/mini_amazon</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="amazon" uuid="d084a578-0ef9-48f4-8fa0-2c0518a7e357">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/Amazon_project/settings.py</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://vcm-8300.vm.duke.edu:5432/mini_amazon</jdbc-url>
+    </data-source>
+  </component>
+</project>

@@ -1,0 +1,6 @@
+AResponse APurchaseMore arrived:
+arrived whnum:1
+arrived things -> id:1
+arrived things -> description:Apple
+arrived things -> count:512
+arrived seqnum:11

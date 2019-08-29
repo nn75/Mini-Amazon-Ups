@@ -1,0 +1,14 @@
+{% extends "website/base.html" %}
+
+
+{% block content %}
+
+    <div class="alert alert-info">
+        Your order has been successfully placed!
+        An email has been sent to your mailbox!
+    </div>
+
+    <a class="ml-2" href="{% url 'order_history' %}">View History</a>
+    <a class="ml-2" href="{% url 'query_order' %}">Query Order</a>
+
+{% endblock content %}

@@ -1,0 +1,22 @@
+Coding Process: (I did not include any progress of our server)
+1.	(4/17) Built up the basic framework of website, including user registration, login/logout.   
+2.	(4/18) Created remote database and webpages for placing order, ‘searching-product’ flow does not work. 
+3.	(4/21) Created ‘order-history’ and basic ‘search & select’ page, but conditional searching page with multiple button still doesn’t work, user cannot search to see if that item exists or not then decide whether to purchase. 
+4.	(4/22) ‘select & search’ logic flows successfully, add docker-related files. But need more work on shopping cart page and interactions with database
+5.	(4/24) Added ‘shopping cart’ and user are able to delete item through it. 
+6.  (4/20) lock the database execute and commit.
+
+Things immune:  
+1.	No other user who is not logged in can have access to any functional webpages. This prevent data from being leaked. 
+2.	After user placed an order, that item is deleted from database and cannot be seen via cart. 
+3.	Buffer Overflow: Python is memory safe language which raises exception for out-of-bound memory access. 
+4.	CSRF: CSRF token that we use in all of our forms  helps avoiding catastrophe of CSRF, due to the fact that attackers are unable to obtain token used to verify identity by Django, even though our cookie still keeps the session alive. 
+5.  Use lock to lock the shared resources, for example message_queue, world_sequence number, ups_sequence number, etc.
+
+Potential Problem/Things can be optimized 
+1.	Can enter random number of digits of credit card which is less than 16 (the typical number of digits of a credit card).
+2.	When user decide to checkout in our ‘shopping cart’ page, s/he can only do this by memorizing the product name and amount to choose which one to buy, we could add some fields like ‘time created’. 
+3.	(for nn: maybe you can add something like scalability or performance of our backend: 
+https://www.marutitech.com/5-challenges-in-web-application-development/)
+4. The initialization process can be shorter, the program should be locked until the initialization is done.
+
